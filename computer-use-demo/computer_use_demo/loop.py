@@ -135,7 +135,13 @@ async def sampling_loop(
         # we use raw_response to provide debug information to streamlit. Your
         # implementation may be able call the SDK directly with:
         # `response = client.messages.create(...)` instead.
+        print("💡 About to call Claude API with:")
+        print("  Model:", model)
+        print("  Tool version:", tool_version)
+        print("  Tools:", tool_collection.to_params())
+        
         try:
+            print("🔍 TOOL PARAMS:", tool_collection.to_params()) #chatgpt here
             raw_response = client.beta.messages.with_raw_response.create(
                 max_tokens=max_tokens,
                 messages=messages,
